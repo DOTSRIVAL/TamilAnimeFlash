@@ -1,0 +1,222 @@
+{
+  "entities": {
+    "Category": {
+      "title": "Category",
+      "description": "Anime Category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "order": { "type": "number" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" },
+        "isSystem": { "type": "boolean" },
+        "isLocked": { "type": "boolean" }
+      },
+      "required": ["id", "name", "order", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "App user profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["viewer", "studio_owner", "admin"] }
+      },
+      "required": ["id", "email", "role"]
+    },
+    "Anime": {
+      "title": "Anime",
+      "description": "Anime series metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "japaneseTitle": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "synopsis": { "type": "string" },
+        "rating": { "type": "number" },
+        "releaseDate": { "type": "string" },
+        "studioId": { "type": "string" },
+        "bannerImage": { "type": "string" },
+        "bannerMobile": { "type": "string" },
+        "anilistId": { "type": "number" },
+        "tmdbId": { "type": "number" },
+        "seasonsCount": { "type": "number" },
+        "categoryId": { "type": "string" },
+        "episodesCount": { "type": "number" },
+        "quality": { "type": "string" }
+      },
+      "required": ["id", "title", "thumbnail", "synopsis", "rating"]
+    },
+    "Episode": {
+      "title": "Episode",
+      "description": "Individual episode of a series",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "animeId": { "type": "string" },
+        "season": { "type": "number" },
+        "episodeNumber": { "type": "number" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "videoUrl2": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "introStart": { "type": "number" },
+        "introEnd": { "type": "number" },
+        "outroStart": { "type": "number" },
+        "importantText": { "type": "string" }
+      },
+      "required": ["id", "animeId", "episodeNumber", "title"]
+    },
+    "Issue": {
+      "title": "Issue",
+      "description": "User reported bug or issue",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "message": { "type": "string" },
+        "adminReply": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "replied", "closed"] },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" },
+        "animeId": { "type": "string" },
+        "episodeId": { "type": "string" },
+        "replySeen": { "type": "boolean" }
+      },
+      "required": ["id", "userId", "message", "createdAt"]
+    },
+    "UserComment": {
+      "title": "UserComment",
+      "description": "User shared comment board for a series",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "animeId": { "type": "string" },
+        "episodeId": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userAvatar": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "likes": { "type": "number" },
+        "dislikes": { "type": "number" },
+        "parentId": { "type": "string" }
+      },
+      "required": ["id", "animeId", "userId", "userName", "content", "createdAt", "likes", "dislikes"]
+    },
+    "WatchProgress": {
+      "title": "WatchProgress",
+      "description": "User's watch progress for an episode",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "animeId": { "type": "string" },
+        "episodeId": { "type": "string" },
+        "position": { "type": "number" },
+        "duration": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["userId", "animeId", "episodeId", "position", "updatedAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notification for new episodes or updates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string", "enum": ["new_episode", "system", "bookmark_update"] },
+        "animeId": { "type": "string" },
+        "episodeId": { "type": "string" },
+        "image": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "title", "message", "type", "createdAt"]
+    },
+    "AnimeRequest": {
+      "title": "AnimeRequest",
+      "description": "User request for a new anime addition",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userAvatar": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "votes": { "type": "number" },
+        "voters": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string", "enum": ["pending", "fulfilled", "rejected"] },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "title", "votes", "voters", "status", "createdAt"]
+    },
+    "AdminBroadcast": {
+      "title": "AdminBroadcast",
+      "description": "Global messages sent by admin to all users",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "attachmentUrl": { "type": "string" },
+        "attachmentType": { "type": "string", "enum": ["image", "video", "audio"] },
+        "attachmentName": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["id", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Categories for anime series"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/anime/{animeId}": {
+      "schema": "Anime",
+      "description": "Anime series"
+    },
+    "/episodes/{episodeId}": {
+      "schema": "Episode",
+      "description": "Episodes"
+    },
+    "/comments/{commentId}": {
+      "schema": "UserComment",
+      "description": "Episode comments"
+    },
+    "/issues/{issueId}": {
+      "schema": "Issue",
+      "description": "User reported issues"
+    },
+    "/watchProgress/{progressId}": {
+      "schema": "WatchProgress",
+      "description": "User watch progress"
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User notifications"
+    },
+    "/requests/{requestId}": {
+      "schema": "AnimeRequest",
+      "description": "Anime requests from users"
+    },
+    "/broadcasts/{broadcastId}": {
+      "schema": "AdminBroadcast",
+      "description": "Broadcast messages for all users"
+    }
+  }
+}
