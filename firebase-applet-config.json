@@ -1,10 +1,10 @@
 {
-  "apiKey": "AIzaSyBow1xYMUQbiP0TI7fV0LnR10KcFkoHWM8",
-  "authDomain": "tamil-anime-flash.firebaseapp.com",
-  "projectId": "tamil-anime-flash",
-  "storageBucket": "tamil-anime-flash.firebasestorage.app",
-  "messagingSenderId": "829749684456",
-  "appId": "1:829749684456:web:1062e76c73d1998732c15d",
-  "measurementId": "G-TM2S4NDGT0",
-  "firestoreDatabaseId": "(default)"
+  "apiKey": "",
+  "authDomain": "",
+  "projectId": "",
+  "storageBucket": "",
+  "messagingSenderId": "",
+  "appId": "",
+  "measurementId": "",
+  "firestoreDatabaseId": ""
 }
